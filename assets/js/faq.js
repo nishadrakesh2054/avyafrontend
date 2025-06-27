@@ -9,11 +9,13 @@ function initBackgrounds() {
 // --- Main Logic ---
 document.addEventListener("DOMContentLoaded", async () => {
   // --- FAQ Section ---
+  const BASE_URL='http://localhost:5000'
+
   const faqContainer = document.getElementById("faqAccordion");
   if (faqContainer) {
     try {
       faqContainer.innerHTML = '<div class="loading">Loading FAQs...</div>';
-      const res = await fetch("http://localhost:3000/api/faqs");
+      const res = await fetch(`${BASE_URL}/api/faqs`);
       if (!res.ok) throw new Error("Network response was not ok");
       const data = await res.json();
       faqContainer.innerHTML = "";
@@ -71,7 +73,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (counterRow) {
     try {
       counterRow.innerHTML = '<div class="loading">Loading counters...</div>';
-      const res = await fetch("http://localhost:3000/api/counters");
+      const res = await fetch(`${BASE_URL}/api/counters`);
       if (!res.ok) throw new Error("Network response was not ok");
       const data = await res.json();
       counterRow.innerHTML = "";
@@ -131,7 +133,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
       sliderContainer.innerHTML =
         '<div class="loading">Loading banners...</div>';
-      const res = await fetch("http://localhost:3000/api/banners");
+      const res = await fetch(`${BASE_URL}/api/banners`);
       if (!res.ok) throw new Error("Network response was not ok");
       const data = await res.json();
       sliderContainer.innerHTML = "";
@@ -145,7 +147,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           slide.className = "hero-slider";
           slide.setAttribute(
             "data-bg-src",
-            `http://localhost:3000${banner.image.url}`
+            `${BASE_URL}${banner.image.url}`
           );
           slide.innerHTML = `
             <div class="container">

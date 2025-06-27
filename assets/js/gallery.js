@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const API_URL = "http://localhost:3000/api/photos";
+    const BASE_URL='http://localhost:5000'
+
+  const API_URL = `${BASE_URL}/api/photos`;
   const galleryGrid = document.getElementById("gallery-grid");
   const pagination = document.getElementById("pagination");
   const filterButtons = document.querySelectorAll(".filter-menu-active button");
@@ -32,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
       thumb.className = "portfolio-thumb";
       const anchor = document.createElement("a");
       anchor.className = "popup-image icon-btn";
-      const imageUrl = `http://localhost:3000${item.photo.url}`;
+      const imageUrl = `BASE_URL${item.photo.url}`;
       anchor.href = imageUrl;
       anchor.innerHTML = '<i class="far fa-eye"></i>';
       const img = document.createElement("img");

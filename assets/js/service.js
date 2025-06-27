@@ -28,12 +28,14 @@ function getParagraphs(content) {
 // --- Main Logic ---
 document.addEventListener("DOMContentLoaded", async () => {
   // --- Service List Page ---
+  const BASE_URL='http://localhost:5000'
+
   const serviceListContainer = document.getElementById("service-list");
   if (serviceListContainer) {
     try {
       serviceListContainer.innerHTML =
         '<div class="loading">Loading services...</div>';
-      const res = await fetch("http://localhost:3000/api/services");
+      const res = await fetch(`${BASE_URL}/api/services`);
       if (!res.ok) throw new Error("Network response was not ok");
       const data = await res.json();
       serviceListContainer.innerHTML = "";
@@ -48,7 +50,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         card.innerHTML = `
           <div class="service-card style2">
             <div class="service-card_icon">
-              <img src="http://localhost:3000${service.icon?.url || ""}" alt="${
+              <img src="${BASE_URL}${service.icon?.url || ""}" alt="${
           service.icon?.alt || "icon"
         }">
             </div>
@@ -92,7 +94,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
       titleEl.textContent = "Loading...";
       const res = await fetch(
-        `http://localhost:3000/api/services/${serviceId}`
+        `${BASE_URL}/api/services/${serviceId}`
       );
       if (!res.ok) throw new Error("Network response was not ok");
       const service = await res.json();
@@ -101,7 +103,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       titleEl.textContent = service.title;
       // Populate image
       if (service.image?.url) {
-        imageEl.src = `http://localhost:3000${service.image.url}`;
+        imageEl.src = `${BASE_URL}${service.image.url}`;
         imageEl.alt = service.image.alt || service.title;
       }
       // Populate content

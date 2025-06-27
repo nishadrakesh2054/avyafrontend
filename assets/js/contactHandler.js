@@ -102,11 +102,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
   }
-
+const BASE_URL='http://localhost:5000'
   // Contact form
   handleFormSubmit({
     formId: "contact-form",
-    endpoint: "http://localhost:3000/api/contacts",
+    endpoint: `${BASE_URL}/api/contacts`,
     transformData: (form) => ({
       name: form.name.value.trim(),
       email: form.email.value.trim(),
@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Newsletter form
   handleFormSubmit({
     formId: "newsletter-form",
-    endpoint: "http://localhost:3000/api/newsletter",
+    endpoint: `${BASE_URL}/api/newsletter`,
     transformData: (form) => ({
       email: form.email.value.trim(),
     }),

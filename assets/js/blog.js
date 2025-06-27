@@ -11,11 +11,11 @@ function formatDateDisplay(input) {
   const year = dateObj.getFullYear();
   return `${day} ${month}, ${year}`;
 }
-
+const BASE_URL='http://localhost:5000'
 // --- Main Logic ---
 document.addEventListener("DOMContentLoaded", async () => {
   // --- Blog List/Page Logic ---
-  const API_URL = "http://localhost:3000/api/blogs";
+  const API_URL = `${BASE_URL}/api/blogs`;
   const blogsContainer = document.getElementById("main-blogs");
   const recentContainer = document.getElementById("recent-posts");
   const categoriesContainer = document.getElementById("categories-list");
@@ -87,8 +87,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       const fragment = document.createDocumentFragment();
       blogs.forEach((blog) => {
         const imageUrl = blog.image?.url
-          ? `http://localhost:3000${blog.image.url}`
-          : "assets/img/default.jpg";
+        ? `${BASE_URL}${blog.image.url}`
+        : "assets/img/default.jpg";
         const contentText =
           blog.content?.root?.children[0]?.children[0]?.text || "";
         const date = formatDateDisplay(blog.date);
@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const fragment = document.createDocumentFragment();
       blogs.forEach((blog) => {
         const imageUrl = blog.image?.url
-          ? `http://localhost:3000${blog.image.url}`
+          ? `${BASE_URL}${blog.image.url}`
           : "assets/img/default.jpg";
         const date = formatDateDisplay(blog.date);
         const div = document.createElement("div");
@@ -236,11 +236,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     blogContent.classList.add("loading");
     blogParagraphs.innerHTML = '<div class="loading">Loading blog...</div>';
     try {
-      const res = await fetch(`http://localhost:3000/api/blogs/${blogId}`);
+      const res = await fetch(`${BASE_URL}/api/blogs/${blogId}`);
       if (!res.ok) throw new Error("Network response was not ok");
       const data = await res.json();
       const imageUrl = data.image?.url
-        ? `http://localhost:3000${data.image.url}`
+        ? `${BASE_URL}${data.image.url}`
         : "assets/img/default.jpg";
       const date = formatDateDisplay(data.date);
       const title = data.title;

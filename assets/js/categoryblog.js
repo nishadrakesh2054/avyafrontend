@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const API_URL = "http://localhost:3000/api/blogs";
+    const BASE_URL='http://localhost:5000'
+  const API_URL = `${BASE_URL}/api/blog`;
   const blogsContainer = document.getElementById("category-blogs");
   const urlParams = new URLSearchParams(window.location.search);
   const selectedCategory = urlParams.get("category");
@@ -24,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     blogsContainer.innerHTML = blogs
       .map((blog) => {
         const imageUrl = blog.image?.url
-          ? `http://localhost:3000${blog.image.url}`
+          ? `${BASE_URL}${blog.image.url}`
           : "assets/img/default.jpg";
         const contentText =
           blog.content?.root?.children[0]?.children[0]?.text || "";

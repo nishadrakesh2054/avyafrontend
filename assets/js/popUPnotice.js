@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/notice");
+    const BASE_URL='http://localhost:5000'
+
+    const res = await fetch(`${BASE_URL}/api/notice`);
     const data = await res.json();
     const activeNotices = data.docs.filter((n) => n.isActive);
 
@@ -12,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const popupHTML = `
         <div class="notice-overlay"></div>
         <div class="notice-popup">
-          <img src="http://localhost:3000${notice.img.url}" alt="${
+          <img src="${BASE_URL}${notice.img.url}" alt="${
       notice.img.alt || notice.title
     }">
        

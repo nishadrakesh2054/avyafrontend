@@ -11,9 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
   async function fetchTrainers() {
     const container = document.querySelector(".team-slider-1");
     if (!container) return;
-
+    const BASE_URL = "http://localhost:5000";
     try {
-      const res = await fetch("http://localhost:3000/api/trainers");
+      const res = await fetch(`${BASE_URL}/api/trainers`);
       const data = await res.json();
 
       const fragment = document.createDocumentFragment();
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.innerHTML = `
             <div class="team-card">
               <div class="team-card_img">
-                <img src="http://localhost:3000${trainer.img.url}" alt="${
+                <img src="${BASE_URL}${trainer.img.url}" alt="${
           trainer.img.alt || trainer.name
         }" />
               </div>
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!container) return;
 
     try {
-      const res = await fetch("http://localhost:3000/api/feedbacks");
+      const res = await fetch(`${BASE_URL}/api/feedbacks`);
       const data = await res.json();
 
       const fragment = document.createDocumentFragment();
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.innerHTML = `
             <div class="testi-box">
               <div class="testi-box_thumb">
-                <img src="http://localhost:3000${item.image.url}" alt="${
+                <img src="${BASE_URL}${item.image.url}" alt="${
           item.image.alt || item.name
         }" />
                 <div class="block-quote"><i class="fas fa-quote-right text-info"></i></div>
